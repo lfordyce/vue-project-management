@@ -29,13 +29,18 @@
 <script>
 export default {
   name: 'home',
-  data () {
-    return {
-      items: [
-        { src: '/static/new-york.jpeg', id: '123erfgt67u', title: 'Projects in New York' },
-        { src: '/static/paris.jpeg', id: '09iuhgft543', title: 'Projects in Paris' },
-        { src: '/static/germany.jpeg', id: '456trefg6kp', title: 'Projects in Germany' }
-      ]
+  // data () {
+  //   return {
+  //     items: [
+  //       { src: '/static/new-york.jpeg', id: '123erfgt67u', title: 'Projects in New York' },
+  //       { src: '/static/paris.jpeg', id: '09iuhgft543', title: 'Projects in Paris' },
+  //       { src: '/static/germany.jpeg', id: '456trefg6kp', title: 'Projects in Germany' }
+  //     ]
+  //   }
+  // },
+  computed: {
+    items () {
+      return this.$store.getters.featuredProjects
     }
   },
   methods: {

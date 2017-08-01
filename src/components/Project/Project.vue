@@ -4,14 +4,14 @@
        <v-flex xs12>
          <v-card class="secondary">
            <v-card-title>
-             <h6 class="primary--text">Project</h6>
+             <h6 class="primary--text">{{ item.title }}</h6>
            </v-card-title>
            <v-card-media
-             src="/static/new-york.jpeg"
+             v-bind:src="item.src"
              height="400px"
            ></v-card-media>
            <v-card-text>
-             <div class="info--text">July 24, 2017</div>
+             <div class="info--text">{{ item.date }}</div>
              <div>
                Some text
              </div>
@@ -28,6 +28,12 @@
 
 <script>
 export default {
+  props: ['id'],
+  computed: {
+    item () {
+      return this.$store.getters.loadedProject(this.id)
+    }
+  }
 }
 </script>
 

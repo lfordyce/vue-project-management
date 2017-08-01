@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-layout row wrap v-for="item in items" :key="item.id" class="mb-2">
       <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
         <v-card class="secondary">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5>
                 <v-card-media
-                  src="/static/new-york.jpeg"
+                  :src="item.src"
                   height="130px"
                 ></v-card-media>
               </v-flex>
@@ -15,11 +15,11 @@
                 <v-card-title primary-title>
                   <div>
                     <h5 class="white--text mb-0">My Project</h5>
-                    <div>July 24 2017</div>
+                    <div>{{ item.date }}</div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat primary to="/projects/1">
+                  <v-btn flat primary v-bind:to="'/projects/' + item.id">
                     <v-icon left>arrow_forward</v-icon>
                     View Project
                   </v-btn>
@@ -36,9 +36,9 @@
 <script>
 export default {
   name: 'projects',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  computed: {
+    items () {
+      return this.$store.getters.loadedProjects
     }
   }
 }
